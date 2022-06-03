@@ -1,0 +1,77 @@
+<template name="message">
+    <div class="" style="height: calc(100vh - 90px);">
+        <div class="row clearfix h-100">
+            <div class="col-lg-12">
+                <div class="with-chat card chat-app h-100" style="margin-bottom: 0;">
+                    <div id="plist" class="people-list">
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                            {{#each user in getUser}}
+                                <li class="clearfix d-flex align-items-center get-message" data-index={{user._id}}>
+                                    <!-- <img src="{{jade.img}}" alt="avatar"> -->
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                    <div class="about">
+                                        <div class="name">{{user.username}}</div>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{#if otherUserId}}
+                        <div class="chat d-flex flex-column h-100">
+                            <div class="chat-header d-flex align-items-center clearfix">
+                                <div class="back-list d-none"  style="margin-right: 20px;">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                </div>
+                                <div class="row">
+                                    <div class="d-flex align-items-center">
+                                        {{#if otherUserId}}
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                                <!-- <img src="{{userImage messages.jadeId}}" alt="avatar"> -->
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                            </a>
+                                            <div class="chat-about">
+                                                <h6 class="m-b-0 pl-2">{{getusername otherUserId}}</h6>
+                                            </div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-history" style="height: calc(100vh - 255.86px);overflow: auto;">
+                                <ul class="m-b-0">
+                                    {{#each msg in messages}}
+                                        {{#if equalCheack msg.senderId}}
+                                            <li class="clearfix">
+                                                <div class="message-data text-end">
+                                                    <span class="message-data-time">{{formatDate msg.createdAt}}</span>
+                                                </div>
+                                                <div class="message other-message float-right">{{msg.msg}}</div>
+                                            </li>
+                                            {{else}}
+                                                <li class="clearfix">
+                                                    <div class="message-data">
+                                                        <span class="message-data-time">{{formatDate msg.createdAt}}</span>
+                                                    </div>
+                                                    <div class="message my-message">{{msg.msg}}</div>                                    
+                                                </li>
+                                        {{/if}}
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <div class="chat-message clearfix">
+                                <form id="send-message">
+                                    <div class="input-group mb-0">
+                                        <input type="text" id="msg" class="form-control" placeholder="Enter text here...">
+                                        <!-- <input type="text" id="msg" name="msg" class="form-control" placeholder="Enter text here..." style="height:60px;background: #fff;border-radius: 30px;padding-left: 1.5rem;">                                     -->
+                                        <div class="input-group-prepend position-absolute" style="right: 0;height: 38px;z-index: 5;">
+                                            <button type="submit" class="send-message input-group-text h-100" style="border-radius: 0;"><i class="fa fa-send"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
