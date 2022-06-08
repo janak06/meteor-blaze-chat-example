@@ -28,11 +28,8 @@ Template.chat.helpers({
   messages () { 
     return Messages.find().fetch(); 
   }, 
-  getusername(userId) { 
-    if (userId) { 
-      const user = Meteor.users.findOne({_id : userId}); 
-      if (user) return user.username; 
-    } 
+  getusername() { 
+    return Meteor.user().username 
   }, 
   userList(){
     var list = Meteor.users.find({_id : {$ne : Meteor.userId()}}).fetch()
@@ -44,6 +41,9 @@ Template.chat.helpers({
 });
 
 Template.chat.events({ 
+  'click .logout-button'(){
+    Meteor.logout()
+  },
   'submit #chat-form'(event, instance) { 
     event.preventDefault(); 
     const text = event.target.text.value; 
@@ -54,4 +54,21 @@ Template.chat.events({
       }
     })
   }
+})
+
+Template.login.events({ 
+  'submit .login-form'(e) {
+    e.preventDefault();
+
+    const target = e.target;
+
+    const username = target.username.value;
+    const password = target.password.value;
+
+    Meteor.loginWithPassword(username, password, (err,res)=>{
+      console.log('err',err);
+      console.log('res',res);
+    });
+  },
+ 
 })

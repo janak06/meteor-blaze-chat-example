@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  {{> loginButtons}}
-  <hr />
+  <!-- {{> loginButtons}} -->
+  <!-- <hr /> -->
   {{#if currentUser}}
     {{> chat}}
     {{else}}
-      <p>please log in/ register</p>
+   {{>login}}
   {{/if}}
 </body>
 <template name="chat">
@@ -21,19 +21,49 @@
       <div class="loading">loading...</div>
       {{else}}
       {{#if userList}}
-        <!-- {{#each  messages}}
-        <p><b>{{getusername userId}}</b> {{formatDate createdAt}} : {{text}}</p>
-        {{/each}} -->
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid justify-content-end">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            {{getusername}}
+          </a>
+        
+          <ul class="dropdown-menu justify-content-end" aria-labelledby="dropdownMenuLink" style="left: auto;">
+            <li><a class="dropdown-item logout-button" href="#">LogOut</a></li>
+          </ul>
+        </div>
+      </nav>
         {{ >message}}
         {{else}}
           <p>No users.</p>
         {{/if}}
   {{/if}}
-  <!-- <form id="chat-form">
-    <p>
-      <textarea name="text" placeholder="write a message...">
-      </textarea>
-    </p>
-    <p><input type="submit" value="send" /></p>
-  </form> -->
+</template>
+
+<template name="login">
+  <form class="login-form">
+    <div>
+        <label htmlFor="username">Username</label>
+
+        <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                required
+        />
+    </div>
+
+    <div>
+        <label htmlFor="password">Password</label>
+
+        <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+        />
+    </div>
+    <div>
+        <button type="submit">Log In</button>
+    </div>
+</form>
 </template>
