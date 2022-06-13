@@ -20,7 +20,6 @@
   {{#if isLoading}}
       <div class="loading">loading...</div>
       {{else}}
-      {{#if userList}}
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid justify-content-end">
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,6 +31,7 @@
           </ul>
         </div>
       </nav>
+      {{#if userList}}
         {{ >message}}
         {{else}}
           <p>No users.</p>
@@ -40,30 +40,53 @@
 </template>
 
 <template name="login">
-  <form class="login-form">
-    <div>
-        <label htmlFor="username">Username</label>
+  {{#if register}}
+  <form class="register-form">
 
-        <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                required
-        />
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label" for="form2Example1">UserName</label>
+      <input type="text" name="username" id="form2Example1" class="form-control" />
     </div>
 
-    <div>
-        <label htmlFor="password">Password</label>
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label" for="form2Example1">Email address</label>
+      <input type="email" name="email" id="form2Example1" class="form-control" />
+    </div>
+  
+    <!-- Password input -->
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input type="password" name="password" id="form2Example2" class="form-control" />
+    </div>
 
-        <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                required
-        />
+      <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+    
+    <div class="text-center">
+      <p>member? <a id="login">Login</a></p>
+
+      
     </div>
-    <div>
-        <button type="submit">Log In</button>
-    </div>
-</form>
+  </form>
+  
+    {{else}}
+      <form class="login-form">
+        <div class="col-6 form-outline mb-4">
+          <label class="form-label" for="form2Example1">Email address</label>
+          <input type="email" name="email" id="form2Example1" class="form-control" />
+        </div>
+      
+        <!-- Password input -->
+        <div class="col-6 form-outline mb-4">
+          <label class="form-label" for="form2Example2">Password</label>
+          <input type="password" name="password" id="form2Example2" class="form-control" />
+        </div>
+    
+          <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        
+        <div class="text-center">
+          <p>Not a member? <a id="register">Register</a></p>
+          
+        </div>
+      </form>
+  {{/if}}
 </template>

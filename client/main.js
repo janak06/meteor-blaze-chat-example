@@ -56,19 +56,50 @@ Template.chat.events({
   }
 })
 
+Template.login.helpers({ 
+  register(){
+    return Template.instance().register.get()
+  },
+});
+
+Template.login.onCreated(function helloOnCreated() {
+  this.register = new ReactiveVar(false);
+});
+
 Template.login.events({ 
+  'click #register'(){
+    Template.instance().register.set(true)
+  },
+  'click #login'(){
+    Template.instance().register.set(false)
+  },
   'submit .login-form'(e) {
     e.preventDefault();
 
     const target = e.target;
 
-    const username = target.username.value;
+    const email = target.email.value;
     const password = target.password.value;
 
-    Meteor.loginWithPassword(username, password, (err,res)=>{
+    Meteor.loginWithPassword(email, password, (err,res)=>{
       console.log('err',err);
       console.log('res',res);
     });
   },
- 
+  'submit .register-form'(e) {
+    e.preventDefault();
+
+    const target = e.target;
+
+    var data ={
+      username : target.username.value,
+      email : target.email.value,
+      password :target.password.value
+    }
+    console.log(data);
+    Accounts.createUser(data, (err,res)=>{
+      console.log('err',err);
+      console.log('res',res);
+    });
+  },
 })
