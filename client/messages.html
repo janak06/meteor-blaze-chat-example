@@ -8,7 +8,7 @@
                             {{#each user in getUser}}
                                 <li class="clearfix d-flex align-items-center get-message" data-index={{user._id}}>
                                     <!-- <img src="{{jade.img}}" alt="avatar"> -->
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                    <img src="/images/avatar7.png" alt="avatar">
                                     <div class="about">
                                         <div class="name">{{user.username}}</div>
                                     </div>
@@ -27,7 +27,7 @@
                                         {{#if otherUserId}}
                                             <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
                                                 <!-- <img src="{{userImage messages.jadeId}}" alt="avatar"> -->
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                                <img src="/images/avatar7.png" alt="avatar">
                                             </a>
                                             <div class="chat-about">
                                                 <h6 class="m-b-0 pl-2">{{getusername otherUserId}}</h6>
@@ -58,13 +58,13 @@
                                 </ul>
                             </div>
                             <div class="chat-message clearfix">
-                                <form id="send-message">
+                                <form class="d-flex align-items-center" id="send-message">
                                     <div class="input-group mb-0">
-                                        <input type="text" id="msg" class="form-control" placeholder="Enter text here...">
-                                        <!-- <input type="text" id="msg" name="msg" class="form-control" placeholder="Enter text here..." style="height:60px;background: #fff;border-radius: 30px;padding-left: 1.5rem;">                                     -->
-                                        <div class="input-group-prepend position-absolute" style="right: 0;height: 38px;z-index: 5;">
-                                            <button type="submit" class="send-message input-group-text h-100" style="border-radius: 0;"><i class="fa fa-send"></i></button>
+                                        <input type="text" id="msg" class="form-control" placeholder="Enter text here..." style="height: 60px;width: 923px;border-radius: 30px;">
+                                        <div style="z-index: 111;position: absolute;left: 91%;top: 12px;">
+                                            <i class="fa fa-smile-o fa-2x"  id="emoji-button" aria-hidden="true" ></i>
                                         </div>
+                                        <button type="submit" class="send-message input-group-text h-100" style="border: 0;background: transparent;"><i class="fa fa-paper-plane" aria-hidden="true" style="font-size: 20px; z-index: 111;position: absolute;left: 95%;top: 20px;"></i></button>
                                     </div>
                                 </form>
                             </div>
