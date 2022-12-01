@@ -1,1 +1,1 @@
-<a href="meteor-chat-app.meteorapp.com">meteor-chat-app.meteorapp.com</a>
+<a href="https://meteor-chat-app.meteorapp.com/">meteor-chat-app.meteorapp.com</a>
